@@ -80,6 +80,37 @@
             margin: 40px 0; 
         }
 
+        /* Copy link styles */
+        .copy-container {
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 20px; 
+            background: white; 
+            padding: 10px; 
+            border-radius: 8px; 
+            border: 1px solid #cbd5e1;
+        }
+
+        #refLink {
+            flex-grow: 1; 
+            border: none; 
+            outline: none; 
+            font-size: 0.85rem; 
+            color: #64748b; 
+            background: transparent;
+        }
+
+        #copyBtn {
+            background: #f1f5f9; 
+            border: none; 
+            padding: 8px 15px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            transition: 0.2s;
+        }
+
         .btn { 
             background-color: var(--primary); 
             color: white; 
@@ -90,6 +121,7 @@
             display: inline-block; 
             transition: all 0.2s ease; 
             box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            width: 80%;
         }
 
         .btn:hover { 
@@ -127,8 +159,14 @@
 
     <div class="cta-box">
         <h3 style="margin-top: 0;">Claim Your Referral Benefits</h3>
-        <p style="color: var(--text-muted); margin-bottom: 24px;">Click the secure link below to apply the student referral discount to your enrollment.</p>
-        <a href="https://platform.bosscoderacademy.com/referlink/ZGFtaW5pa3VtYXIyNjI5QGdtYWlsLmNvbQ==" class="btn">ACCESS REFERRAL DISCOUNT →</a>
+        <p style="color: var(--text-muted); margin-bottom: 15px;">Copy the referral link below or click the button to enroll.</p>
+        
+        <div class="copy-container">
+            <input type="text" value="https://platform.bosscoderacademy.com/referlink/ZGFtaW5pa3VtYXIyNjI5QGdtYWlsLmNvbQ==" id="refLink" readonly>
+            <button onclick="copyLink()" id="copyBtn">Copy Link</button>
+        </div>
+
+        <a href="https://platform.bosscoderacademy.com/referlink/ZGFtaW5pa3VtYXIyNjI5QGdtYWlsLmNvbQ==" class="btn" target="_blank">GO TO BOSSCODER →</a>
     </div>
 
     <h2>Why I Chose Bosscoder</h2>
@@ -140,7 +178,7 @@
     <ul>
         <li><strong>Expert Mentorship:</strong> Direct guidance from engineers at Google, Meta, and Amazon.</li>
         <li><strong>Curriculum:</strong> Deep dives into Advance Python, DSML, DSA, System Design, and Full-Stack development.</li>
-        <li><strong>Placement Support:</strong> Dedicated career coaches and mock interview sessions along with Placement support.</li>
+        <li><strong>Placement Support:</strong> Dedicated career coaches and mock interview sessions with lifetime placement support.</li>
     </ul>
 
     <h2>How to Redeem Your Reward</h2>
@@ -151,6 +189,26 @@
     <p>© 2026 Student Career Insights | Independent Review Site<br>
     This site contains student referral links which may provide rewards to the author at no extra cost to you.</p>
 </footer>
+
+<script>
+function copyLink() {
+  var copyText = document.getElementById("refLink");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); 
+  navigator.clipboard.writeText(copyText.value);
+  
+  var btn = document.getElementById("copyBtn");
+  btn.innerText = "Copied!";
+  btn.style.background = "#dcfce7";
+  btn.style.color = "#166534";
+  
+  setTimeout(() => {
+    btn.innerText = "Copy Link";
+    btn.style.background = "#f1f5f9";
+    btn.style.color = "black";
+  }, 2000);
+}
+</script>
 
 </body>
 </html>
